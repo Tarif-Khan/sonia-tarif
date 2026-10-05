@@ -19,16 +19,16 @@ if (canvas && shouldUseScene()) {
 }
 
 const CAPTIONS = {
-  "01-carry": "The carry — Lake Louise",
-  "02-ring": "The ring",
-  "03-ring-sky": "Ring & sky",
-  "04-embrace": "The embrace",
-  "05-sonia": "Sonia",
+  "01-carry": "The carry was at Lake Emerald, Yoho National Park",
+  "02-ring": "We first started dating January 20th, 2024",
+  "03-ring-sky": "We first met at Northeastern University, Boston",
+  "04-embrace": "We've been to 5 different countries together",
+  "05-sonia": "We both love Indian food",
 };
 
 function captionFor(url) {
   const name = decodeURIComponent(url).split("/").pop().replace(/\.[^.]+$/, "");
-  return CAPTIONS[name] || "Banff, Alberta";
+  return CAPTIONS[name] || "";
 }
 
 const gallery = document.getElementById("gallery");
@@ -37,13 +37,16 @@ for (const url of getGalleryUrls()) {
   figure.className = "shot";
   const img = document.createElement("img");
   img.src = url;
-  img.alt = `Tarif and Sonia in Banff — ${captionFor(url)}`;
+  img.alt = "Tarif and Sonia";
   img.loading = "lazy";
   img.decoding = "async";
   figure.append(img);
-  const caption = document.createElement("figcaption");
-  caption.textContent = captionFor(url);
-  figure.append(caption);
+  const fact = captionFor(url);
+  if (fact) {
+    const caption = document.createElement("figcaption");
+    caption.textContent = fact;
+    figure.append(caption);
+  }
   gallery.append(figure);
 }
 
