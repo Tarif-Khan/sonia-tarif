@@ -57,7 +57,7 @@ details.innerHTML = `
   <dl>
     <div><dt>When</dt><dd>October 31, 2026</dd></div>
     <div><dt>Where</dt><dd>Will be announced shortly</dd></div>
-    <div><dt>RSVP</dt><dd>Invitations to follow</dd></div>
+    <div><dt>Time</dt><dd>Details to follow</dd></div>
   </dl>`;
 gallery.append(details);
 
