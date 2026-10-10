@@ -311,14 +311,6 @@ h1 em {
   filter: saturate(0.85);
 }
 
-.detail-note {
-  margin-top: 1.2rem;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-style: italic;
-  font-size: clamp(1rem, 3.6vw, 1.15rem);
-  color: #6d5b4a;
-}
-
 .finale {
   position: relative;
   background: #1c2420;

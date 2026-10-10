@@ -96,8 +96,7 @@ function initSite() {
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
       allowfullscreen
-    ></iframe>
-    <p class="detail-note">Dinner, dancing, and a whole lot of love to follow.</p>`;
+    ></iframe>`;
   gallery.append(details);
 
   const finaleFrame = document.getElementById("finale-photo");
