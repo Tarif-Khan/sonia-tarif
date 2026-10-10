@@ -25,7 +25,29 @@
     />
   </head>
   <body>
-    <header class="hero">
+    <div class="gate" id="gate">
+      <div class="gate-inner">
+        <p class="eyebrow">Tarif &amp; Sonia</p>
+        <div class="rule" aria-hidden="true"></div>
+        <h1 class="gate-title">Please enter the<br />password</h1>
+        <form id="gate-form" autocomplete="off" novalidate>
+          <input
+            id="gate-password"
+            type="password"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="16"
+            autocomplete="off"
+            aria-label="Password"
+          />
+          <button type="submit" id="gate-submit">Enter</button>
+          <p class="gate-error" id="gate-error" hidden>That isn't it — please try again.</p>
+        </form>
+      </div>
+    </div>
+
+    <div id="site" hidden>
+      <header class="hero">
       <img
         class="hero-photo"
         src="/cover.jpg"
@@ -69,6 +91,7 @@
         </div>
       </section>
     </main>
+    </div>
 
     <script type="module" src="/src/main.js"></script>
   </body>
