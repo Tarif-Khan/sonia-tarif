@@ -41,19 +41,19 @@ const MAPS_EMBED =
 const TIMELINE = [
   { src: "/timeline/01-first-photo.jpg", date: "January 28, 2024", caption: "Our first ever photo" },
   { src: "/timeline/02-first-valentines.jpg", date: "February 14, 2024", caption: "Our first Valentine's" },
-  { src: "/timeline/03-sonia-birthday.jpg", date: "March 3, 2024", caption: "Sonia's first birthday party" },
+  { src: "/timeline/03-sonia-birthday.jpg", date: "March 3, 2024", caption: "Sonia's 21st Birthday Party" },
   { src: "/timeline/04-first-nyc-date-v2.jpg", date: "August 4, 2024", caption: "First NYC date" },
   { src: "/timeline/05-halloween.jpg", date: "October 31, 2024", caption: "Halloween costumes together — Grimace and victim" },
   { src: "/timeline/06-valentines-california.jpg", date: "February 14, 2025", caption: "Valentine's Day in California" },
   { src: "/timeline/07-graduation-1.jpg", date: "May 11, 2025", caption: "Graduation" },
   { src: "/timeline/08-graduation-2.jpg", date: "May 11, 2025", caption: "More graduation" },
-  { src: "/timeline/09-donald-birthday.jpg", date: "September 15, 2025", caption: "Donald's first birthday together" },
+  { src: "/timeline/09-donald-birthday.jpg", date: "September 15, 2025", caption: "Our friend Donald's birthday" },
   { src: "/timeline/10-zion-hike.jpg", date: "October 12, 2025", caption: "First real hike with Sonia — Zion National Park" },
-  { src: "/timeline/11-emily-khoji.jpg", date: "October 25, 2025", caption: "Emily and Khoji" },
+  { src: "/timeline/11-emily-khoji.jpg", date: "October 25, 2025", caption: "Emily and Khoji's Wedding" },
   { src: "/timeline/12-housewarming.jpg", date: "November 9, 2025", caption: "A friend's housewarming" },
   { src: "/timeline/13-new-years.jpg", date: "January 1, 2026", caption: "New Year's 2026" },
   { src: "/timeline/14-july-fourth.jpg", date: "July 4, 2026", caption: "July 4th" },
-  { src: "/timeline/15-tarif-birthday-v3.jpg", date: "September 24, 2026", caption: "Tarif's birthday" },
+  { src: "/timeline/15-tarif-birthday-v3.jpg", date: "September 24, 2026", caption: "Tarif's 23rd Birthday" },
   { src: "/photos/01-carry.jpg", date: "October 3, 2026", caption: "The proposal at Lake Emerald" },
 ];
 
@@ -165,6 +165,10 @@ function initSite() {
         </dd>
       </div>
     </dl>
+    <div class="registry">
+      <p class="registry-note">Participating in the registry is entirely optional and not required!</p>
+      <a class="registry-button" href="${REGISTRY_URL}" target="_blank" rel="noopener">Wedding Registry</a>
+    </div>
   `;
   const intro = document.querySelector(".intro");
   if (intro) {
@@ -172,13 +176,6 @@ function initSite() {
   } else {
     (story || gallery).append(details);
   }
-
-  const registry = document.createElement("div");
-  registry.className = "registry";
-  registry.innerHTML = `
-    <p class="registry-note">Participating in the registry is entirely optional and not required!</p>
-    <a class="registry-button" href="${REGISTRY_URL}" target="_blank" rel="noopener">Wedding Registry</a>`;
-  (story || gallery).append(registry);
 
   const mapFrame = document.createElement("iframe");
   mapFrame.className = "map";
