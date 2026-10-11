@@ -71,9 +71,28 @@
     </section>
 
     <main>
-      <section class="story" aria-label="Engagement photos">
-        <p class="story-kicker">Our Story</p>
-        <div class="gallery" id="gallery"></div>
+      <section class="story" aria-label="Photos">
+        <p class="story-kicker">Photos</p>
+        <div class="tabs" role="tablist" aria-label="Photo collections">
+          <button
+            type="button"
+            class="tab is-active"
+            id="tab-engagement"
+            role="tab"
+            aria-selected="true"
+            aria-controls="gallery"
+          >Engagement</button>
+          <button
+            type="button"
+            class="tab"
+            id="tab-story"
+            role="tab"
+            aria-selected="false"
+            aria-controls="timeline"
+          >Our Story</button>
+        </div>
+        <div class="gallery" id="gallery" role="tabpanel" aria-labelledby="tab-engagement"></div>
+        <div class="timeline" id="timeline" role="tabpanel" aria-labelledby="tab-story" hidden></div>
       </section>
 
       <section class="finale" aria-label="Closing photograph">

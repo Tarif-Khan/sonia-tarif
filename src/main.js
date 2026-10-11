@@ -38,6 +38,44 @@ const MAPS_URL = "https://www.google.com/maps?q=40.6746374,-73.9765659&z=16";
 const MAPS_EMBED =
   "https://www.google.com/maps?q=40.6746374,-73.9765659&z=16&output=embed";
 
+const TIMELINE = [
+  { src: "/timeline/01-first-photo.jpg", date: "January 28, 2024", caption: "Our first ever photo" },
+  { src: "/timeline/02-first-valentines.jpg", date: "February 14, 2024", caption: "Our first Valentine's" },
+  { src: "/timeline/03-sonia-birthday.jpg", date: "March 3, 2024", caption: "Sonia's first birthday party" },
+  { src: "/timeline/04-first-nyc-date-v2.jpg", date: "August 4, 2024", caption: "First NYC date" },
+  { src: "/timeline/05-halloween.jpg", date: "October 31, 2024", caption: "Halloween costumes together — Grimace and victim" },
+  { src: "/timeline/06-valentines-california.jpg", date: "February 14, 2025", caption: "Valentine's Day in California" },
+  { src: "/timeline/07-graduation-1.jpg", date: "May 11, 2025", caption: "Graduation" },
+  { src: "/timeline/08-graduation-2.jpg", date: "May 11, 2025", caption: "More graduation" },
+  { src: "/timeline/09-donald-birthday.jpg", date: "September 15, 2025", caption: "Donald's first birthday together" },
+  { src: "/timeline/10-zion-hike.jpg", date: "October 12, 2025", caption: "First real hike with Sonia — Zion National Park" },
+  { src: "/timeline/11-emily-khoji.jpg", date: "October 25, 2025", caption: "Emily and Khoji" },
+  { src: "/timeline/12-housewarming.jpg", date: "November 9, 2025", caption: "A friend's housewarming" },
+  { src: "/timeline/13-new-years.jpg", date: "January 1, 2026", caption: "New Year's 2026" },
+  { src: "/timeline/14-july-fourth.jpg", date: "July 4, 2026", caption: "July 4th" },
+  { src: "/timeline/15-tarif-birthday-v3.jpg", date: "September 24, 2026", caption: "Tarif's birthday" },
+  { src: "/photos/01-carry.jpg", date: "October 3, 2026", caption: "The proposal at Lake Emerald" },
+];
+
+function initTabs(gallery, timeline) {
+  const tabEngagement = document.getElementById("tab-engagement");
+  const tabStory = document.getElementById("tab-story");
+  if (!tabEngagement || !tabStory) return;
+
+  function select(which) {
+    const showStory = which === "story";
+    tabEngagement.classList.toggle("is-active", !showStory);
+    tabStory.classList.toggle("is-active", showStory);
+    tabEngagement.setAttribute("aria-selected", String(!showStory));
+    tabStory.setAttribute("aria-selected", String(showStory));
+    gallery.hidden = showStory;
+    timeline.hidden = !showStory;
+  }
+
+  tabEngagement.addEventListener("click", () => select("engagement"));
+  tabStory.addEventListener("click", () => select("story"));
+}
+
 // Everything here needs layout to be visible first (the WebGL cover sizes itself
 // once the site is shown), so it runs only after the gate opens.
 function initSite() {
@@ -49,6 +87,8 @@ function initSite() {
   }
 
   const gallery = document.getElementById("gallery");
+  const timeline = document.getElementById("timeline");
+  const story = gallery?.closest(".story");
   for (const url of getGalleryUrls()) {
     const figure = document.createElement("figure");
     figure.className = "shot";
@@ -66,6 +106,40 @@ function initSite() {
     }
     gallery.append(figure);
   }
+
+  if (timeline) {
+    for (const entry of TIMELINE) {
+      const item = document.createElement("article");
+      item.className = "timeline-item";
+
+      const dot = document.createElement("span");
+      dot.className = "timeline-dot";
+      dot.setAttribute("aria-hidden", "true");
+      item.append(dot);
+
+      const img = document.createElement("img");
+      img.src = entry.src;
+      img.alt = `${entry.caption} — ${entry.date}`;
+      img.loading = "lazy";
+      img.decoding = "async";
+      item.append(img);
+
+      const body = document.createElement("div");
+      body.className = "timeline-body";
+      const date = document.createElement("p");
+      date.className = "timeline-date";
+      date.textContent = entry.date;
+      const cap = document.createElement("p");
+      cap.className = "timeline-caption";
+      cap.textContent = entry.caption;
+      body.append(date, cap);
+      item.append(body);
+
+      timeline.append(item);
+    }
+  }
+
+  initTabs(gallery, timeline);
 
   const details = document.createElement("aside");
   details.className = "details";
@@ -97,7 +171,7 @@ function initSite() {
       referrerpolicy="no-referrer-when-downgrade"
       allowfullscreen
     ></iframe>`;
-  gallery.append(details);
+  (story || gallery).append(details);
 
   const finaleFrame = document.getElementById("finale-photo");
   const finaleUrl = getFinaleUrl();
