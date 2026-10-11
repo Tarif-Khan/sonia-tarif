@@ -165,16 +165,20 @@ function initSite() {
         </dd>
       </div>
     </dl>
-    <div class="registry">
-      <p class="registry-note">Participating in the registry is entirely optional and not required!</p>
-      <a class="registry-button" href="${REGISTRY_URL}" target="_blank" rel="noopener">Wedding Registry</a>
-    </div>`;
+  `;
   const intro = document.querySelector(".intro");
   if (intro) {
     intro.after(details);
   } else {
     (story || gallery).append(details);
   }
+
+  const registry = document.createElement("div");
+  registry.className = "registry";
+  registry.innerHTML = `
+    <p class="registry-note">Participating in the registry is entirely optional and not required!</p>
+    <a class="registry-button" href="${REGISTRY_URL}" target="_blank" rel="noopener">Wedding Registry</a>`;
+  (story || gallery).append(registry);
 
   const mapFrame = document.createElement("iframe");
   mapFrame.className = "map";
@@ -184,6 +188,15 @@ function initSite() {
   mapFrame.referrerPolicy = "no-referrer-when-downgrade";
   mapFrame.allowFullscreen = true;
   (story || gallery).append(mapFrame);
+
+  const APPLE_MAPS_URL =
+    "https://maps.apple.com/?q=Scottadito+Osteria+Toscana+788A+Union+Street+Brooklyn+NY+11215&ll=40.6746374,-73.9765659";
+  const mapLinks = document.createElement("div");
+  mapLinks.className = "map-links";
+  mapLinks.innerHTML = `
+    <a class="map-link" href="${MAPS_URL}" target="_blank" rel="noopener">Open in Google Maps</a>
+    <a class="map-link map-link-outline" href="${APPLE_MAPS_URL}" target="_blank" rel="noopener">Open in Apple Maps</a>`;
+  (story || gallery).append(mapLinks);
 
   const finaleFrame = document.getElementById("finale-photo");
   const finaleUrl = getFinaleUrl();

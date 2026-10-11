@@ -396,6 +396,13 @@ h1 em {
   flex-direction: column;
   align-items: center;
   gap: 0.9rem;
+  text-align: center;
+}
+
+.story > .registry {
+  max-width: 26rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .registry-note {
@@ -425,12 +432,44 @@ h1 em {
 
 .map {
   display: block;
-  width: auto;
+  width: calc(100% + (var(--page-pad) * 2));
+  max-width: none;
   height: clamp(18rem, 52svh, 28rem);
   margin: 1.5rem calc(-1 * var(--page-pad)) 0;
   border: 0;
   border-radius: 0;
   filter: saturate(0.85);
+}
+
+.map-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.map-link {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  color: var(--paper);
+  background: #2a241c;
+  border: 1px solid #2a241c;
+  border-radius: 2px;
+}
+
+.map-link-outline {
+  color: #2a241c;
+  background: transparent;
+}
+
+.map-link:active {
+  opacity: 0.85;
 }
 
 .finale {
