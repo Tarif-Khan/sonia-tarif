@@ -141,6 +141,8 @@ function initSite() {
 
   initTabs(gallery, timeline);
 
+  const REGISTRY_URL = "https://www.zola.com/registry/tarifandsonia";
+
   const details = document.createElement("aside");
   details.className = "details";
   details.innerHTML = `
@@ -163,15 +165,25 @@ function initSite() {
         </dd>
       </div>
     </dl>
-    <iframe
-      class="map"
-      src="${MAPS_EMBED}"
-      title="Map to Scottadito Osteria Toscana, 788A Union Street, Brooklyn"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      allowfullscreen
-    ></iframe>`;
-  (story || gallery).append(details);
+    <div class="registry">
+      <p class="registry-note">Participating in the registry is entirely optional and not required!</p>
+      <a class="registry-button" href="${REGISTRY_URL}" target="_blank" rel="noopener">Wedding Registry</a>
+    </div>`;
+  const intro = document.querySelector(".intro");
+  if (intro) {
+    intro.after(details);
+  } else {
+    (story || gallery).append(details);
+  }
+
+  const mapFrame = document.createElement("iframe");
+  mapFrame.className = "map";
+  mapFrame.src = MAPS_EMBED;
+  mapFrame.title = "Map to Scottadito Osteria Toscana, 788A Union Street, Brooklyn";
+  mapFrame.loading = "lazy";
+  mapFrame.referrerPolicy = "no-referrer-when-downgrade";
+  mapFrame.allowFullscreen = true;
+  (story || gallery).append(mapFrame);
 
   const finaleFrame = document.getElementById("finale-photo");
   const finaleUrl = getFinaleUrl();
