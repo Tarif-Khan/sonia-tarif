@@ -29,8 +29,9 @@
       <div class="gate-inner">
         <p class="eyebrow">Tarif &amp; Sonia</p>
         <div class="rule" aria-hidden="true"></div>
-        <h1 class="gate-title">Please enter the<br />password</h1>
+        <h1 class="gate-title">Please enter the<br />passwords</h1>
         <form id="gate-form" autocomplete="off" novalidate>
+          <label class="gate-label" for="gate-password">Password</label>
           <input
             id="gate-password"
             type="password"
@@ -40,9 +41,31 @@
             autocomplete="off"
             aria-label="Password"
           />
+          <label class="gate-label" for="gate-soda"
+            >What is the soda company Tarif lives behind?</label
+          >
+          <input
+            id="gate-soda"
+            type="text"
+            maxlength="32"
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+            aria-label="What is the soda company Tarif lives behind?"
+          />
           <button type="submit" id="gate-submit">Enter</button>
-          <p class="gate-error" id="gate-error" hidden>That isn't it — please try again.</p>
+          <p class="gate-error" id="gate-error" hidden>
+            That isn't it — please try again.
+          </p>
         </form>
+        <p class="gate-registry">
+          <a
+            href="https://www.zola.com/registry/tarifandsonia"
+            target="_blank"
+            rel="noopener"
+            >View the wedding registry</a
+          >
+        </p>
       </div>
     </div>
 

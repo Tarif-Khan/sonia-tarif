@@ -3,12 +3,15 @@ import "./styles.css";
 
 // The passcode is stored in plain text on purpose — this is an evite, not a vault.
 const PASSCODE = "10312026";
+const SODA_PASSCODE = "pepsi";
 const UNLOCKED_KEY = "sonia-tarif-unlocked";
+const UNLOCKED_VALUE = `${PASSCODE}|${SODA_PASSCODE}`;
 
 const gate = document.getElementById("gate");
 const site = document.getElementById("site");
 const gateForm = document.getElementById("gate-form");
 const gateInput = document.getElementById("gate-password");
+const gateSoda = document.getElementById("gate-soda");
 const gateError = document.getElementById("gate-error");
 
 function shouldUseScene() {
@@ -213,19 +216,33 @@ function revealSite() {
   }
 }
 
-if (sessionStorage.getItem(UNLOCKED_KEY) === PASSCODE) {
+function isUnlocked() {
+  return sessionStorage.getItem(UNLOCKED_KEY) === UNLOCKED_VALUE;
+}
+
+if (isUnlocked()) {
   revealSite();
 } else {
   gateInput.focus({ preventScroll: true });
   gateForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (gateInput.value.trim() === PASSCODE) {
-      sessionStorage.setItem(UNLOCKED_KEY, PASSCODE);
+    const firstOk = gateInput.value.trim() === PASSCODE;
+    const secondOk =
+      gateSoda.value.trim().toLowerCase() === SODA_PASSCODE;
+
+    if (firstOk && secondOk) {
+      sessionStorage.setItem(UNLOCKED_KEY, UNLOCKED_VALUE);
       revealSite();
-    } else {
-      gateError.hidden = false;
+      return;
+    }
+
+    gateError.hidden = false;
+    if (!firstOk) {
       gateInput.value = "";
       gateInput.focus({ preventScroll: true });
+    } else {
+      gateSoda.value = "";
+      gateSoda.focus({ preventScroll: true });
     }
   });
 }
